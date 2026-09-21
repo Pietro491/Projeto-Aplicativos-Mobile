@@ -1,57 +1,192 @@
-```html
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Input</title>
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView
+} from "react-native";
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-            background-color: #f2f2f2;
-        }
+export default function App() {
 
-        input {
-            padding: 10px;
-            width: 250px;
-            font-size: 16px;
-        }
+  const jogadores = [
+    {
+      nome: "Lionel Messi",
+      bolas: 8,
+      pais: "🇦🇷 Argentina"
+    },
+    {
+      nome: "Cristiano Ronaldo",
+      bolas: 5,
+      pais: "🇵🇹 Portugal"
+    },
+    {
+      nome: "Michel Platini",
+      bolas: 3,
+      pais: "🇫🇷 França"
+    },
+    {
+      nome: "Johan Cruyff",
+      bolas: 3,
+      pais: "🇳🇱 Holanda"
+    },
+    {
+      nome: "Marco van Basten",
+      bolas: 3,
+      pais: "🇳🇱 Holanda"
+    },
+    {
+      nome: "Franz Beckenbauer",
+      bolas: 2,
+      pais: "🇩🇪 Alemanha"
+    },
+    {
+      nome: "Ronaldo Nazário",
+      bolas: 2,
+      pais: "🇧🇷 Brasil"
+    }
+  ];
 
-        button {
-            padding: 10px 20px;
-            margin-left: 5px;
-            cursor: pointer;
-        }
+  return (
+    <View style={styles.container}>
 
-        #resultado {
-            margin-top: 20px;
-            font-size: 20px;
-        }
-    </style>
-</head>
+      <Text style={styles.titulo}>
+        🏆 BOLA DE OURO
+      </Text>
 
-<body>
+      <Text style={styles.subtitulo}>
+        Jogadores com mais prêmios
+      </Text>
 
-    <h1>Digite seu nome</h1>
+      <ScrollView style={styles.lista}>
 
-    <input type="text" id="nome" placeholder="Digite aqui...">
+        {jogadores.map((jogador, index) => (
 
-    <button onclick="mostrarNome()">Enviar</button>
+          <View style={styles.card} key={jogador.nome}>
 
-    <p id="resultado"></p>
+            <View style={styles.numero}>
+              <Text style={styles.numeroTexto}>
+                {index + 1}
+              </Text>
+            </View>
 
-    <script>
-        function mostrarNome() {
-            let nome = document.getElementById("nome").value;
+            <View style={styles.informacoes}>
 
-            document.getElementById("resultado").innerText =
-                "Olá, " + nome + "!";
-        }
-    </script>
+              <Text style={styles.nome}>
+                {jogador.nome}
+              </Text>
 
-</body>
-</html>
-```
+              <Text style={styles.pais}>
+                {jogador.pais}
+              </Text>
+
+            </View>
+
+            <View style={styles.bolas}>
+
+              <Text style={styles.quantidade}>
+                {jogador.bolas}
+              </Text>
+
+              <Text style={styles.textoBola}>
+                🏆
+              </Text>
+
+            </View>
+
+          </View>
+
+        ))}
+
+      </ScrollView>
+
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    backgroundColor: "#075E24",
+    paddingTop: 60,
+    paddingHorizontal: 20
+  },
+
+  titulo: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    textAlign: "center",
+    marginBottom: 5
+  },
+
+  subtitulo: {
+    fontSize: 16,
+    color: "#D8F3DC",
+    textAlign: "center",
+    marginBottom: 25
+  },
+
+  lista: {
+    width: "100%"
+  },
+
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 15,
+    padding: 15,
+    marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+
+    elevation: 5
+  },
+
+  numero: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#075E24",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 12
+  },
+
+  numeroTexto: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "bold"
+  },
+
+  informacoes: {
+    flex: 1
+  },
+
+  nome: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#222"
+  },
+
+  pais: {
+    fontSize: 14,
+    color: "#666",
+    marginTop: 4
+  },
+
+  bolas: {
+    alignItems: "center",
+    marginLeft: 10
+  },
+
+  quantidade: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#075E24"
+  },
+
+  textoBola: {
+    fontSize: 20
+  }
+
+});
